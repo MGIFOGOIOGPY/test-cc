@@ -1,4 +1,5 @@
-Flask==2.3.2
+flask==2.3.2
 requests==2.31.0
-urllib3==1.26.16
-Werkzeug==2.3.7
+beautifulsoup4==4.12.2
+user-agent==0.1.11
+pyfiglet==0.8.post1
