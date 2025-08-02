@@ -1,8 +1,2 @@
 flask==2.3.2
 requests==2.31.0
-beautifulsoup4==4.12.2
-user-agent==0.1.11
-pyfiglet==0.8.post1
-getuseragent==1.0.3
-colorama==0.4.6
-pyfiglet==0.8.post1
